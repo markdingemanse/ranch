@@ -1,0 +1,17 @@
+#!/usr/bin/env php
+<?php
+
+if (file_exists(__DIR__.'/../../autoload.php')) {
+    require __DIR__.'/../../autoload.php';
+} else {
+    require __DIR__.'/vendor/autoload.php';
+}
+
+use Liquidpineapple\Ranch\Commands\ListCommand;
+use Symfony\Component\Console\Application;
+
+$application = new Application('Ranch – Easy homestead site management');
+
+$application->add(new ListCommand);
+
+$application->run();

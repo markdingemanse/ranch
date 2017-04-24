@@ -1,0 +1,22 @@
+{
+    "name": "liquidpineapple/ranch",
+    "description": "A project management en configuration CLI for laravel/homestead",
+    "require": {
+        "symfony/console": "^3.2"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jesse Kramer",
+            "email": "kram0021@hz.nl"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Liquidpineapple\\Ranch\\": "src/"
+        }
+    },
+    "bin": [
+        "ranch"
+    ]
+}
