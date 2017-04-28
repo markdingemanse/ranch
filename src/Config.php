@@ -2,6 +2,8 @@
 
 namespace Liquidpineapple\Ranch;
 
+use Liquidpineapple\Ranch\ConfigFiles\RanchConfig;
+
 class Config {
 
     /**
@@ -9,9 +11,8 @@ class Config {
      */
     private static function getUserConfig()
     {
-        return [
-
-        ];
+        $config = new RanchConfig;
+        return $config->asArray();
     }
 
     /**
@@ -21,7 +22,9 @@ class Config {
     private static function getDefaultConfig()
     {
         return [
-            'homedir' => $_SERVER['HOME'],
+            'homesteadDir' => getenv('HOME'). '/Homestead',
+            'homesteadIp' => '192.168.10.10',
+            'hostsFile' => '/etc/hosts',
         ];
     }
 
