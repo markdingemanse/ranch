@@ -3,7 +3,8 @@
     "description": "A project management en configuration CLI for laravel/homestead",
     "require": {
         "symfony/console": "^3.2",
-        "symfony/filesystem": "^3.2"
+        "symfony/filesystem": "^3.2",
+        "tightenco/collect": "^5.4"
     },
     "license": "MIT",
     "authors": [

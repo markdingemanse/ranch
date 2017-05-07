@@ -11,8 +11,7 @@ class Config {
      */
     private static function getUserConfig()
     {
-        $config = new RanchConfig;
-        return $config->asArray();
+        return RanchConfig::get()->toArray();
     }
 
     /**

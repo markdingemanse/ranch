@@ -13,24 +13,14 @@ class ListCommand extends Command {
 
     protected function configure()
     {
-        $this->setName('list')
-             ->setDescription('List all configured sites')
-             ->setHelp('This command shows a list of all configured sites');
+        $this->setName('add')
+             ->setDescription('Add a new site to your configuration')
+             ->setHelp('Add a new site to your configuration');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $io = new SymfonyStyle($input, $output);
-        $hostsFileHosts = HostsConfig::get()
-            ->filter(function($host) {
-                return $host['ip_address'] === '192.168.10.10';
-            })
-            ->map(function($host) {
-                return $host['hostname'];
-            })
-            ->toArray();
-        $io->title('Configured sites');
-        $io->listing($hostsFileHosts);
     }
 
 }

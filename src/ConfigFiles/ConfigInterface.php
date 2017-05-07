@@ -2,17 +2,19 @@
 
 namespace Liquidpineapple\Ranch\ConfigFiles;
 
+use Illuminate\Support\Collection;
+
 interface ConfigInterface {
 
     /**
      * Returns config file as array
-     * @return array Array of config values
+     * @return Collection Array of config values
      */
-    public function asArray();
+    public static function get();
 
     /**
      * Saves the given config
-     * @param $config array Configuration to save
+     * @param $config Collection Configuration to save
      */
-     public function save($config);
+     public static function save(Collection $config);
 }

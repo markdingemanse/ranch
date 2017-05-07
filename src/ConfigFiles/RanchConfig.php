@@ -2,28 +2,22 @@
 
 namespace Liquidpineapple\Ranch\ConfigFiles;
 
+use Illuminate\Support\Collection;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 
 class RanchConfig implements ConfigInterface {
 
-    private $filePath;
-    private $fs;
-
-    public function __construct()
-    {
-        $this->fs = new Filesystem;
-        $this->filePath = getenv('HOME'). '/.ranchcfg';
-    }
-
     /**
      * Returns config file as array
      * @return array Array of config values
      */
-    public function asArray()
+    public static function get()
     {
-        if ($this->fs->exists($this->filePath)) {
-            return $this->parse(file_get_contents($this->filePath));
+        $fs = new Filesystem;
+        $filePath = getenv('HOME'). '/.ranchcfg';
+        if ($fs->exists($filePath)) {
+            return self::parse(file_get_contents($filePath));
         } else {
             return [];
         }
@@ -33,9 +27,9 @@ class RanchConfig implements ConfigInterface {
      * Saves the given config
      * @param $config array Configuration to save
      */
-    public function save($config)
+    public static function save(Collection $config)
     {
-        // file_put_contents($this->filePath, $this->dump($config));
+        // file_put_contents($filePath, $this->dump($config));
     }
 
     /**
@@ -43,7 +37,7 @@ class RanchConfig implements ConfigInterface {
      * @param $content string Raw file contents
      * @return array Parsed config content
      */
-    private function parse($content)
+    private static function parse($content)
     {
         $lines = explode(PHP_EOL, $content);
         $parsedConfig = [];
@@ -62,7 +56,7 @@ class RanchConfig implements ConfigInterface {
                 $parsedConfig[$key] = $value;
             }
         }
-        return $parsedConfig;
+        return new Collection($parsedConfig);
     }
 
     /**
@@ -70,7 +64,7 @@ class RanchConfig implements ConfigInterface {
      * @param $config array Configuration
      * @return string Raw file content
      */
-    private function dump($config)
+    private static function dump($config)
     {
         //
     }
