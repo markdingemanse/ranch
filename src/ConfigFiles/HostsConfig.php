@@ -9,6 +9,22 @@ use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 
 class HostsConfig implements ConfigInterface {
 
+    /**
+     * Returns a collction with all configured sites
+     * @return Collection list of sites
+     */
+    public static function getSites()
+    {
+        return HostsConfig::get()
+            ->filter(function($host) {
+                return $host['ip_address'] === Config::homesteadIp();
+            })
+            ->map(function($host) {
+                return $host['hostname'];
+            })
+            ->sort();
+    }
+
     public static function get()
     {
         $fs = new Filesystem;
@@ -17,7 +33,7 @@ class HostsConfig implements ConfigInterface {
         if ($fs->exists($filePath)) {
             return self::parse(file_get_contents($filePath));
         } else {
-            return [];
+            throw new Exception('Could not find Hosts file');
         }
     }
 

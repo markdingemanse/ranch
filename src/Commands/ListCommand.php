@@ -2,7 +2,9 @@
 
 namespace Liquidpineapple\Ranch\Commands;
 
+use Illuminate\Support\Collection;
 use Liquidpineapple\Ranch\Config;
+use Liquidpineapple\Ranch\ConfigFiles\HomesteadConfig;
 use Liquidpineapple\Ranch\ConfigFiles\HostsConfig;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Style\SymfonyStyle;
@@ -21,16 +23,29 @@ class ListCommand extends Command {
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $io = new SymfonyStyle($input, $output);
-        $hostsFileHosts = HostsConfig::get()
-            ->filter(function($host) {
-                return $host['ip_address'] === '192.168.10.10';
-            })
-            ->map(function($host) {
-                return $host['hostname'];
-            })
-            ->toArray();
+        $hostsFileHosts = HostsConfig::getSites();
+        $homesteadHosts = HomesteadConfig::getSites();
+        $commonHosts = $this->getCommon($hostsFileHosts, $homesteadHosts)->toArray();
+
         $io->title('Configured sites');
-        $io->listing($hostsFileHosts);
+        $io->listing($commonHosts);
+    }
+
+    /**
+     * Takes two lists and returns the common items
+     * @param Collection $listA first list of sites
+     * @param Collection $listB second list of sites
+     * @return Collection list of sites that lists A and B have in common
+     */
+    private function getCommon(Collection $listA, Collection $listB)
+    {
+        $filteredA = $listA->filter(function ($site) use ($listB) {
+            return $listB->contains($site);
+        });
+        $filteredB = $listB->filter(function ($site) use ($filteredA) {
+            return $filteredA->contains($site);
+        });
+        return $filteredB;
     }
 
 }

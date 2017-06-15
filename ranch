@@ -8,10 +8,10 @@ if (file_exists(__DIR__.'/../../autoload.php')) {
 }
 
 use Liquidpineapple\Ranch\Commands\ListCommand;
+use Liquidpineapple\Ranch\Commands\ValidateCommand;
 use Symfony\Component\Console\Application;
 
 $application = new Application('Ranch – Easy homestead site management');
-
 $application->add(new ListCommand);
-
+$application->add(new ValidateCommand);
 $application->run();

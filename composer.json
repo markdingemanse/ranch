@@ -4,7 +4,8 @@
     "require": {
         "symfony/console": "^3.2",
         "symfony/filesystem": "^3.2",
-        "tightenco/collect": "^5.4"
+        "tightenco/collect": "^5.4",
+        "symfony/yaml": "^3.3"
     },
     "license": "MIT",
     "authors": [
