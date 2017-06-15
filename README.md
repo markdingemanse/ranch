@@ -10,6 +10,7 @@ ranch [command] [args]
 |  |  |
 |:--|:--|
 |`list`| List all your sites |
+|`validate`| Validate your environment |
 |`add`| Add a new site to your configuration |
 |`remove`| List all your sites |
 |`init`| Create or reset your `.ranchcfg` file |
