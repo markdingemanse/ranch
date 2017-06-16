@@ -16,5 +16,5 @@ interface ConfigInterface {
      * Saves the given config
      * @param $config Collection Configuration to save
      */
-     public static function save(Collection $config);
+     public static function save(array $config);
 }

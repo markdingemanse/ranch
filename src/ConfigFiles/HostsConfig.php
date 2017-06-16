@@ -37,7 +37,7 @@ class HostsConfig implements ConfigInterface {
         }
     }
 
-    public static function save(Collection $config)
+    public static function save(array $config)
     {
         //.
     }

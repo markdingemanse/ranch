@@ -62,9 +62,10 @@ class HomesteadConfig implements ConfigInterface {
      * Saves the given config
      * @param $config array Configuration to save
      */
-    public static function save(Collection $config)
+    public static function save(array $config)
     {
-        //..
+        $filePath = Config::homesteadDir() . '/Homestead.yaml';
+        file_put_contents($filePath, $this->dump($config));
     }
 
     /**
@@ -84,6 +85,6 @@ class HomesteadConfig implements ConfigInterface {
      */
     private static function dump($config)
     {
-        //..
+        return Yaml::dump($config);
     }
 }

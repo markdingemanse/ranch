@@ -27,7 +27,7 @@ class RanchConfig implements ConfigInterface {
      * Saves the given config
      * @param $config array Configuration to save
      */
-    public static function save(Collection $config)
+    public static function save(array $config)
     {
         // file_put_contents($filePath, $this->dump($config));
     }
