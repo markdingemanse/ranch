@@ -11,11 +11,11 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class ListCommand extends Command {
+class SitesCommand extends Command {
 
     protected function configure()
     {
-        $this->setName('list')
+        $this->setName('sites')
              ->setDescription('List all configured sites')
              ->setHelp('This command shows a list of all configured sites');
     }

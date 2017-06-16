@@ -9,7 +9,7 @@ ranch [command] [args]
 
 |  |  |
 |:--|:--|
-|`list`| List all your sites |
+|`sites`| List all your sites |
 |`validate`| Validate your environment |
 |`add`| Add a new site to your configuration |
 |`remove`| List all your sites |

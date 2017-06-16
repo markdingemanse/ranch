@@ -10,6 +10,24 @@ use Symfony\Component\Yaml\Yaml;
 
 class HomesteadConfig implements ConfigInterface {
 
+    public static function getRemoteSyncPaths()
+    {
+        $config = self::get();
+        return collect($config['folders'])
+            ->map(function($folder) {
+                return $folder['to'];
+            });
+    }
+
+    public static function getRemoteSitePaths()
+    {
+        $config = self::get();
+        return collect($config['sites'])
+            ->map(function($site) {
+                return $site['to'];
+            });
+    }
+
     /**
      * Returns a collction with all configured sites
      * @return Collection list of sites
