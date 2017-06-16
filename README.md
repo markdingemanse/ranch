@@ -1,4 +1,7 @@
-# ranch (WORK IN PROGRESS)
+# ranch
+
+** RANCH IS A WORK IN PROGRESS **
+
 Ranch is a command line tool that helps you manage your sites in Homestead.
 
 ## Overview
@@ -7,13 +10,13 @@ Ranch is a command line tool that helps you manage your sites in Homestead.
 ranch [command] [args]
 ```
 
-|  |  |
-|:--|:--|
-|`sites`| List all your sites |
-|`validate`| Validate your environment |
-|`add`| Add a new site to your configuration |
-|`remove`| List all your sites |
-|`init`| Create or reset your `.ranchcfg` file |
+|  |  |  |
+|:--|:--|:--
+|`sites`| List all your sites | ✅ |
+|`validate`| Validate your environment | ✅ |
+|`add`| Add a new site to your configuration | ⏳ |
+|`remove`| List all your sites | ⏳ |
+|`init`| Create or reset your `.ranchcfg` file | ⏳ |
 
 ### RanchConfig (`.ranchcfg`)
 
