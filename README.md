@@ -1,6 +1,6 @@
 # ranch
 
-** RANCH IS A WORK IN PROGRESS **
+**RANCH IS A WORK IN PROGRESS**
 
 Ranch is a command line tool that helps you manage your sites in Homestead.
 
