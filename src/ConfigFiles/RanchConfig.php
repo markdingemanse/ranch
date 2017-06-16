@@ -66,7 +66,7 @@ class RanchConfig implements ConfigInterface {
      */
     private static function dump($config)
     {
-        //
+        //.
     }
 
 }
