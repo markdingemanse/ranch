@@ -11,7 +11,7 @@ ranch [command] [args]
 ```
 
 |  |  |  |
-|:--|:--|:--
+|:--|:--|:--|
 |`sites`| List all your sites | ✅ |
 |`validate`| Validate your environment | ✅ |
 |`add`| Add a new site to your configuration | ⏳ |
@@ -36,6 +36,7 @@ HOSTS_FILE=/etc/hosts
 ```
 
 **Note:** if you don't configure any values, the following default values will be used:
+
 | key | value |
 |:--|:--|
 | `HOMESTEAD_DIR` | `$HOME/Homestead` |
