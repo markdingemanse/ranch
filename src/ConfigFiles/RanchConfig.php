@@ -32,32 +32,46 @@ class RanchConfig implements ConfigInterface {
         // file_put_contents($filePath, $this->dump($config));
     }
 
-    /**
+   ```    /**
      * Parse the raw configuration file contents
      * @param $content string Raw file contents
-     * @return array Parsed config content
+     * @return Collection Parsed config content
      */
     private static function parse($content)
     {
-        $lines = explode(PHP_EOL, $content);
-        $parsedConfig = [];
-        foreach ($lines as $line) {
+        $lines = new Collection(explode(PHP_EOL, $content));
+        $parsedConfig = new Collection;
+
+        $lines->each(function ($line) {
             if (count(explode('=', $line)) >= 2) {
                 $key = explode('=', $line)[0];
                 $value = explode('=', $line)[1];
                 // Convert snakecase to camelcase
                 $segments = explode('_', $key);
                 $segments = array_map('strtolower', $segments);
-                for ($i=1; $i<count($segments); $i++) {
-                    $segments[$i] = ucfirst($segments[$i]);
-                }
-                $key = implode($segments);
 
-                $parsedConfig[$key] = $value;
+                $key = implode(static::$segmentUppercase($segments));
+
+                $parsedConfig->put($key, $value);
             }
-        }
-        return new Collection($parsedConfig);
+        });
+
+        return $parsedConfig;
     }
+
+    /**
+     * Uppercase the first letter of a segment. Should be kept as a array for
+     * generalization purposes
+     * @param $segment array
+     * @return array Parsed segments
+     */
+    private static function segmentUppercase($segment)
+    {
+        for ($i=1; $i<count($segments); $i++) {
+            $segments[$i] = ucfirst($segments[$i]);
+        }
+        return $segment;
+    }```
 
     /**
      * Generates raw config file content form array
